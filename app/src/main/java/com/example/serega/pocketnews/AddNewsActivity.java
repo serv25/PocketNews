@@ -6,10 +6,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -18,14 +18,15 @@ import java.util.Date;
 
 public class AddNewsActivity extends Activity {
 
-    private static String photoPath;
-    private String title;
-    private String text;
+    private TextView photoSrc;
+    private static String photoPath = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_news);
+
+        photoSrc = (TextView)findViewById(R.id.photo_src);
 
         Button btnPublish = (Button) findViewById(R.id.publish_btn);
         btnPublish.setOnClickListener(onClickPublishBtn);
@@ -39,37 +40,31 @@ public class AddNewsActivity extends Activity {
         @Override
         public void onClick(View v) {
             EditText addedTitle = (EditText) findViewById(R.id.add_title);
-            title = addedTitle.getText().toString();
+            String title = addedTitle.getText().toString();
 
             EditText addedText = (EditText) findViewById(R.id.add_text);
-            text = addedText.getText().toString();
+            String text = addedText.getText().toString();
 
-            News news = new News(title, photoPath, text);
-            news.save();
-
+            if (!title.equals("") && !text.equals("")) {
+                News news = new News(title, photoPath, text);
+                news.save();
+                startActivity(new Intent(AddNewsActivity.this, MainActivity.class));
+            }else{
+                Toast.makeText(AddNewsActivity.this, "Please fill out all fields!", Toast.LENGTH_SHORT).show();
+            }
         }
     };
 
     private View.OnClickListener onClickTakePhotoBtn = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            takePicture();
-            if (title != null && text != null) {
-                startActivity(new Intent(AddNewsActivity.this, MainActivity.class));
-            }else{
-                Toast.makeText(AddNewsActivity.this, "Please fill out all fields!", Toast.LENGTH_SHORT).show();
-            }
-
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            Uri file = Uri.fromFile(getOutputMediaFile());
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, file);
+            startActivityForResult(intent, 100);
         }
     };
 
-
-    public void takePicture() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        Uri file = Uri.fromFile(getOutputMediaFile());
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, file);
-        startActivityForResult(intent, 100);
-    }
 
     private static File getOutputMediaFile() {
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
@@ -90,6 +85,9 @@ public class AddNewsActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 100) {
             if (resultCode == RESULT_OK) {
+                photoSrc.setText(photoPath);
+            }else{
+                Toast.makeText(AddNewsActivity.this, "Unable to load photo!", Toast.LENGTH_SHORT).show();
             }
         }
     }
