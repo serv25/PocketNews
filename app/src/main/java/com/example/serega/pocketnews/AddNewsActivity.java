@@ -18,7 +18,7 @@ import java.util.Date;
 
 public class AddNewsActivity extends Activity {
 
-    private TextView photoSrc;
+    private TextView photoSrcView;
     private static String photoPath = null;
 
     @Override
@@ -26,7 +26,7 @@ public class AddNewsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_news);
 
-        photoSrc = (TextView)findViewById(R.id.photo_src);
+        photoSrcView = (TextView)findViewById(R.id.photo_src);
 
         Button btnPublish = (Button) findViewById(R.id.publish_btn);
         btnPublish.setOnClickListener(onClickPublishBtn);
@@ -85,7 +85,7 @@ public class AddNewsActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 100) {
             if (resultCode == RESULT_OK) {
-                photoSrc.setText(photoPath);
+                photoSrcView.setText(photoPath);
             }else{
                 Toast.makeText(AddNewsActivity.this, "Unable to load photo!", Toast.LENGTH_SHORT).show();
             }

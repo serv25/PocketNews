@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion '24.0.3'
 
     defaultConfig {
         applicationId "com.example.serega.pocketnews"
@@ -24,5 +24,4 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'com.github.satyan:sugar:1.5'
-    compile 'com.android.support:gridlayout-v7:24.2.1'
 }
