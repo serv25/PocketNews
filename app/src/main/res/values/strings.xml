@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Pocket News</string>
+    <string name="add_news">Add news</string>
+    <string name="btn_delete">Delete</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_your_text">Your text..</string>
+    <string name="btn_take_photo">Take Photo</string>
+    <string name="btn_publish">Publish</string>
 </resources>

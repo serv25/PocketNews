@@ -5,7 +5,8 @@
     <item
         android:id="@+id/add_news"
         android:orderInCategory="100"
-        android:title="Add news"
+        android:title="@string/add_news"
+        android:icon="@drawable/ic_note_add_black_24dp"
         app:showAsAction="always"
         />
 

@@ -15,8 +15,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.serega.pocketnews.models.News;
 import com.example.serega.pocketnews.R;
+import com.example.serega.pocketnews.models.News;
 
 import java.util.List;
 

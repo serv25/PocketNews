@@ -22,7 +22,7 @@ import java.util.Date;
 public class AddNewsActivity extends Activity {
 
     private TextView photoSrcView;
-    private static String photoPath = null;
+    private String photoPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +69,7 @@ public class AddNewsActivity extends Activity {
     };
 
 
-    private static File getOutputMediaFile() {
+    private File getOutputMediaFile() {
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), "CameraDemo");
 
