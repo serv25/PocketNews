@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
         root = (LinearLayout) findViewById(R.id.root);
 
-        layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         layoutParams.setMargins(3, 3, 3, 3);
 
 
@@ -49,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         showNews();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finishAffinity();
     }
 
     @Override
@@ -70,14 +77,16 @@ public class MainActivity extends AppCompatActivity {
     private void showNews() {
 
         root.removeAllViews();
-
         List<News> list = News.listAll(News.class);
-        LinearLayout wrapNewsLayout;
-        ImageView photoView;
-        TextView titleView;
-        MyClickListener myClickListener;
 
         if (list != null) {
+
+            LinearLayout wrapNewsLayout;
+            ImageView photoView;
+            TextView titleView;
+            MyClickListener myClickListener;
+
+
             for (News news : list) {
                 wrapNewsLayout = new LinearLayout(this);
                 wrapNewsLayout.setOrientation(LinearLayout.HORIZONTAL);
