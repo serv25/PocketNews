@@ -1,4 +1,4 @@
-package com.example.serega.pocketnews;
+package com.example.serega.pocketnews.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.serega.pocketnews.R;
+import com.example.serega.pocketnews.models.News;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -26,7 +29,7 @@ public class AddNewsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_news);
 
-        photoSrcView = (TextView)findViewById(R.id.photo_src);
+        photoSrcView = (TextView) findViewById(R.id.photo_src);
 
         Button btnPublish = (Button) findViewById(R.id.publish_btn);
         btnPublish.setOnClickListener(onClickPublishBtn);
@@ -49,7 +52,7 @@ public class AddNewsActivity extends Activity {
                 News news = new News(title, photoPath, text);
                 news.save();
                 startActivity(new Intent(AddNewsActivity.this, MainActivity.class));
-            }else{
+            } else {
                 Toast.makeText(AddNewsActivity.this, "Please fill out all fields!", Toast.LENGTH_SHORT).show();
             }
         }
@@ -86,7 +89,7 @@ public class AddNewsActivity extends Activity {
         if (requestCode == 100) {
             if (resultCode == RESULT_OK) {
                 photoSrcView.setText(photoPath);
-            }else{
+            } else {
                 Toast.makeText(AddNewsActivity.this, "Unable to load photo!", Toast.LENGTH_SHORT).show();
             }
         }

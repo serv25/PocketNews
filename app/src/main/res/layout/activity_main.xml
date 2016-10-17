@@ -3,14 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_dark"
     android:orientation="vertical"
-    tools:context="com.example.serega.pocketnews.MainActivity">
+    tools:context="com.example.serega.pocketnews.activities.MainActivity">
 
     <LinearLayout
         android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/holo_blue_dark"
-        android:orientation="vertical" />
+        android:orientation="vertical"
+        android:padding="3dp" />
 
 </ScrollView>

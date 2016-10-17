@@ -1,4 +1,4 @@
-package com.example.serega.pocketnews;
+package com.example.serega.pocketnews.models;
 
 import com.orm.SugarRecord;
 
